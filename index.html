@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"> 
+    <title>Document</title>
+    <style>
+        .mega-menu {
+            display: none;
+            left: 0;
+            position: absolute;
+            text-align: left;
+            width: 100%;
+            z-index: 9;
+        }
+
+        .toggleable > label:after {
+            content: url(src/images/icon-arrowdown.png);
+            padding-left: 10px;
+            position: relative;
+            top: -1px;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+        .toggle-input:not(checked) ~ .mega-menu {
+            display: none;
+        }
+
+        .toggle-input:checked ~ .mega-menu {
+            display: block;
+        }
+
+        .toggle-input:checked + label {
+            color: white;
+        }
+
+        .toggle-input:checked ~ label:after {
+            content: url(src/images/icon-arow.png);
+            padding-left: 10px;
+            position: relative;
+            top: -1px;
+        }
+        .date:after {
+            content:"•";
+            position: relative;
+            top: 0;
+            color: #FC5185;
+            padding: 0 12px;
+        }
+        .author:after {
+            content:"•";
+            position: relative;
+            top: 0;
+            color: #FC5185;
+            padding: 0 12px;
+        }
+        .carousel-open:checked + .carousel-item {
+            position: static;
+            opacity: 100;
+        }
+                
+        #carousel-1:checked ~ .control-1,
+        #carousel-2:checked ~ .control-2,
+        #carousel-3:checked ~ .control-3 {
+            display: block;
+        }
+
+        #a:checked ~ .control-1,
+        #b:checked ~ .control-2,
+        #c:checked ~ .control-3,
+        #d:checked ~ .control-4 {
+            display: block;
+        }
+        .carousel-indicators {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+        #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+        #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+        #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+            color: #2b6cb0;  /*Set to match the Tailwind colour you want the active one to be */
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-color_blue py-2">
+        <div class="container mx-auto">
+            <div class="flex items-center">
+                <div class="w-3/12">
+                    <img src="src/images/icon-search.png" alt="">
+                </div>
+                <div class="w-6/12 flex justify-center">
+                    <img src="src/images/logo.png" alt="">
+                </div>
+                <div class="w-3/12  flex justify-end">
+                    <ul class="flex space-x-3">
+                        <li>
+                            <a href=""><img src="src/images/icon-trail.png" alt=""></a>
+                        </li>
+                        <li> 
+                            <a href=""><img src="src/images/icon-people.png" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="">
+                <ul class="flex uppercase justify-center space-x-8 mt-7 font-Montserrat font-bold text-sm text-white">
+                    <li>
+                        <a href="">Beranda</a>
+                    </li>
+                    <li class="toggleable">
+                        <input type="checkbox" value="selected" id="toggle-one" class="toggle-input">
+                        <label for="toggle-one" class="cursor-pointer flex justify-center">Belanja</label>
+                        <div role="toggle" class="p-6 mega-menu mb-16 sm:mb-0 shadow-xl bg-color_white">
+                            <div class="container  mx-auto w-full ">
+                                <h2 class="text-black border-gray-600 border-b-2 sm:border-b-2 lg:border-b-2">Belanja</h2>
+                                <div class="flex flex-wrap justify-between mx-2">
+                                    <ul class="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">Semua Merek</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">X-Voyager</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">Balancia</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">Cadilac</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">Playoon</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 text-color_gray_light">Machia</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">Everest</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block p-3 hover:bg-blue-600 text-gray-300 hover:text-white">Marathon</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 pb-6 pt-6 lg:pt-3">
+                                        <h3 class="font-bold text-xl text-white text-bold mb-2">Heading 4</h3>
+                                        <li class="pt-3">
+                                            <img src="https://placehold.it/205x172">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="toggleable">
+                        <input type="checkbox" value="selected" id="toggle-one" class="toggle-input">
+                        <label for="toggle-one" class="cursor-pointer flex justify-center">Bundel 1</label>
+                    </li>
+                    <li class="toggleable">
+                        <input type="checkbox" value="selected" id="toggle-one" class="toggle-input">
+                        <label for="toggle-one" class="cursor-pointer flex justify-center">Bundel 2</label>
+                    </li>
+                    <li>
+                        <a href="">Promo</a>
+                    </li>
+                    <li>
+                        <a href="">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="relative mb-12">
+        <div class="carousel relative shadow-2xl bg-white">
+            <div class="carousel-inner relative overflow-hidden w-full">
+                <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+                <div class="carousel-item absolute opacity-0 ">
+                    <div class="block h-full w-full "><img src="src/images/image-banner.png" alt="" class="w-full"></div>
+                </div>
+                <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label>
+                <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+                <div class="carousel-item absolute opacity-0 ">
+                    <div class="block h-full w-full "><img src="src/images/image-banner.png" alt="" class="w-full"></div>
+                </div>
+                <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label> 
+                
+                <!--Slide 3-->
+                <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+                <div class="carousel-item absolute opacity-0 ">
+                    <div class="block h-full w-full "><img src="src/images/image-banner.png" alt="" class="w-full"></div>
+                </div>
+                <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label>
+                <ol class="carousel-indicators">
+                    <li class="inline-block mr-3">
+                        <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                    </li>
+                    <li class="inline-block mr-3">
+                        <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                    </li>
+                    <li class="inline-block mr-3">
+                        <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-blue-700">•</label>
+                    </li>
+                </ol>
+                
+            </div>
+        </div>
+        <!-- <div class="w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer  text-3xl font-bold absolute text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 bottom-0 my-auto"><img src="src/images/icon-right.png" alt=""></div> -->
+    </div>
+    
+    <div class="container mx-auto " >
+        <div class="flex flex-wrap -m-4">
+            <div class="p-4 sm:w-1/2 lg:w-1/4">
+                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <img src="src/images/icon-sepatu.png" class="object-none h-40 w-full">
+                    <div class="p-6 text-center">
+                        <h5 class="text-base font-bold text-color_near_gray mb-1">Kualitas Terpercaya</h5>
+                        <p class="text-color_gray_light">Produk kami di buat dari bahan berkualitas. Kami bekerjasama dengan mereka yang paling berpengalaman dalam industri.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 sm:w-1/2 lg:w-1/4">
+                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <img src="src/images/icon-gift.png" class="object-none h-40 w-full">
+                    <div class="p-6  text-center">
+                        <h1 class="text-base font-bold text-color_near_gray mb-1">Kirim sebagai Hadiah</h1>
+                        <p class="text-color_gray_light">Ingin memberi bingkisan pada orang tersayang dengan kemasan serta pesan khusus? Sampaikan saja, kami yang siapkan.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 sm:w-1/2 lg:w-1/4">
+                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <img src="src/images/icon-retur.png" class="object-none h-40 w-full">
+                    <div class="p-6 text-center">
+                        <h1 class="text-base font-bold text-color_near_gray mb-1">Pengembalian Mudah</h1>
+                        <p class="text-color_gray_light">Tidak puas dengan pembelian Anda (kualitas buruk atau salah ukuran)? Kami siap untuk melakukan retur barang kapanpun.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 sm:w-1/2 lg:w-1/4">
+                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <img src="src/images/icon-cs.png" class="object-none h-40 w-full">
+                    <div class="p-6 text-center">
+                        <h1 class="text-base font-bold text-color_near_gray mb-1">Layanan Pelanggan</h1>
+                        <p class="text-color_gray_light">Untuk semua informasi, kami selalu siap untuk melayani kebutuhan dan pertanyaan Anda.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto m-12" >
+        <div class="flex justify-between mb-7">
+            <h4 class="text-2xl font-bold">Pilihan Minggu Ini</h4>
+            <button class="bg-transparent border-2 rounded-full px-5 py-2 uppercase text-color_blue text-base">
+                Produk Lainnya
+            </button>
+        </div>
+            <div class="carousel relative">
+                <div class="carousel-inner relative overflow-hidden w-full">
+                    <div class="flex  -m-4">
+                        <div class="p-4 sm:w-1/2 lg:w-1/4">
+                                <input class="carousel-open" type="radio" id="a" name="carousels" aria-hidden="true" hidden="" checked="checked">
+                                <div class="carousel-item absolute">
+                                    <div class="block">
+                                        
+                                            <img src="src/images/image-sepatu01.png" class="object-contain   w-full h-64">
+                                            <div class="w-60">
+                                                <p class="text-top">sepatu Pria, olahraga</p>
+                                                <p class="sub-text">Playoon - Kelimutu Run Model A</p>
+                                                <p class="rating">
+                                                    <img src="src/images/icon-rate.png" alt="">
+                                                </p>
+                                                <p class="price"><s>Rp. 387.000,-</s><span class="sub-text">Rp. 325.000,-</span></p>
+                                            </div>
+                                            <button class="cart">Add to cart</button>
+                                    </div>
+                                </div>
+                                <label for="d" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                                <label for="b" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label>
+                    
+                        </div>
+                        <div class="p-4 sm:w-1/2 lg:w-1/4">
+                            <input class="carousel-open" type="radio" id="b" name="carousels" aria-hidden="true" hidden="">
+                            <div class="carousel-item absolute">
+                                <div class="block">
+                                        <img src="src/images/image-sepatu02.png" class="object-contain   w-full h-64">
+                                        <div class="w-60">
+                                            <p class="text-top">sepatu Pria, olahraga</p>
+                                            <p class="sub-text">Playoon - Kelimutu Run Model A</p>
+                                            <p class="rating">
+                                                <img src="src/images/icon-rate.png" alt="">
+                                            </p>
+                                            <p class="price"><s>Rp. 387.000,-</s><span class="sub-text">Rp. 325.000,-</span></p>
+                                        </div>
+                                </div>
+                    </div>
+                    <label for="a" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                    <label for="c" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label> 
+                        </div>
+                        <div class="p-4 sm:w-1/2 lg:w-1/4">
+                    <input class="carousel-open" type="radio" id="c" name="carousels" aria-hidden="true" hidden="">
+                    <div class="carousel-item absolute">
+                        <div class="block">
+                            <img src="src/images/image-sepatu03.png" class="object-contain   w-full h-64">
+                            <div class="w-60">
+                                <p class="text-top">sepatu Pria, olahraga</p>
+                                <p class="sub-text">Playoon - Kelimutu Run Model A</p>
+                                <p class="rating">
+                                    <img src="src/images/icon-rate.png" alt="">
+                                </p>
+                                <p class="price"><s>Rp. 387.000,-</s><span class="sub-text">Rp. 325.000,-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="b" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                    <label for="d" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label>
+            
+                        </div>
+                        <div class="p-4 sm:w-1/2 lg:w-1/4">
+                    <input class="carousel-open" type="radio" id="d" name="carousels" aria-hidden="true" hidden="">
+                    <div class="carousel-item absolute " >
+                        <div class="block">
+                            <img src="src/images/image-sepatu04.png" class="object-contain   w-full h-64">
+                            <div class="w-60">
+                                <p class="text-top">sepatu Pria, olahraga</p>
+                                <p class="sub-text">Playoon - Kelimutu Run Model A</p>
+                                <p class="rating">
+                                    <img src="src/images/icon-rate.png" alt="">
+                                </p>
+                                <p class="price"><s>Rp. 387.000,-</s><span class="sub-text">Rp. 325.000,-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="c" class="prev control-4 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"><img src="src/images/icon-left.png" alt=""></label>
+                    <label for="a" class="next control-4 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"><img src="src/images/icon-right.png" alt=""></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    <div class="container lg:flex ml-auto mr-auto flex-wrap items-start" >
+        <div class="w-full md:w-1/2 lg:w-6/12 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="">
+                <img src="src/images/image-sepatuanak.png" class="w-full">
+                <h3 class="text-1xl  font-bold text-white -mt-10 mb-10 ml-4 justify-start flex">
+                    Sepatu Anak
+                </h3>
+            </div>
+            
+        </div>
+        <div class="w-full md:w-1/2 lg:w-6/12 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="">
+                <img src="src/images/image-sendal.png" class="w-full">
+                <h3 class="text-1xl font-bold text-white -mt-10 mb-10 mr-4 justify-end flex">
+                    Sendal
+                </h3>
+            </div>
+            
+        </div>
+        <div class="w-full md:w-1/2 lg:w-6/12 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="">
+                <img src="src/images/image-sepatuwanita.png" class="w-full">
+                <h3 class="text-1xl  font-bold text-white -mt-10 mb-10 ml-4 justify-start flex">
+                    Sepatu Wanita
+                </h3>
+            </div>
+            
+        </div>
+        <div class="w-full md:w-1/2 lg:w-6/12 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="">
+                <img src="src/images/image-sepatupria.png" class="w-full">
+                <h3 class="text-1xl font-bold text-black -mt-10 mb-10 mr-4 justify-end flex">
+                    Sepatu Pria
+                </h3>
+            </div>
+            
+        </div>
+    </div>
+    <div class="w-full">
+        <img src="src/images/image-sepatudiskon.png" alt="" class="w-full">   
+    </div>
+    <div class="container mx-auto m-12" >
+        <div class="flex justify-between">
+            <h4 class="text-2xl">Blog</h4>
+            <button class="bg-transparent border-2 rounded-full px-5 py-2 uppercase text-color_blue text-base">
+                Lihat Semua
+            </button>
+        </div>
+        
+        <div class="container lg:flex ml-auto mr-auto flex-wrap items-start mt-7" >
+            <div class="w-full md:w-1/2 lg:w-4/12 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div>
+                    <img src="src/images/image-blog01.png" class="ml-auto mr-auto  w-full">
+                </div>
+                <div class="py-4">
+                    <p class="text-color_blue text-sm uppercase font-bold">promo</p>
+                    <p class="text-color_near_gray text-lg font-bold py-2">Sepatu Kotor? Untung Udah Ada Mino Clean dari Mino Store</p>
+                    <span class="date text-xs text-color_gray_light">30 Nov 2020</span><span class="author text-xs text-color_gray_light">OLEH Admin</span><span class="text-xs text-color_gray_light">3 KOMENTAR</span>
+                    <p class="text-color_gray_light text-xs">Laiknya diri sendiri, sepatu juga butuh dirawat. Seti- daknya setiap sebulan sekali, sepatu perlu dibersih- kan. Namun pembersihan tergantung jenis bahan se...</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-4/12 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div class="">
+                    <img src="src/images/image-blog02.png" class="ml-auto mr-auto w-full">
+                </div>
+                <div class="py-4">
+                    <p class="text-color_blue text-sm uppercase font-bold">Promo</p>
+                    <p class="text-color_near_gray text-lg font-bold py-2">Mino Shoe Store Siap Semarakkan Harbolnas 11.11!</p>
+                    <span class="date text-xs text-color_gray_light">28 NOV 2020</span><span class="author text-xs text-color_gray_light">OLEH Admin</span><span class="text-xs text-color_gray_light">3 KOMENTAR</span>
+                    <p class="text-color_gray_light text-xs">Akan ada banyak sekali promo dari diskon ongkir, potongan harga, hingga cashback sehingga kamu bisa mendapat barang yang kamu suka.</p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 lg:w-4/12 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div class="">
+                    <img src="src/images/image-blog03.png" class="ml-auto mr-auto  w-full">
+                </div>
+                <div class="py-4">
+                    <p class="text-color_blue text-sm uppercase font-bold">tips & trik</p>
+                    <p class="text-color_near_gray text-lg font-bold py-2">Tips Agar Kaki Tidak Keseleo Sewaktu Berlari</p>
+                    <span class="date text-xs text-color_gray_light">26 NOV 2020 </span><span class="author text-xs text-color_gray_light">OLEH Admin</span><span class="text-xs text-color_gray_light">3 KOMENTAR</span>
+                    <p class="text-color_gray_light text-xs">Jogging atau lari-lari pendek menjadi salah satu tren olahraga di tengah pandemi. Namun, sayangnya tren ini diikuti oleh pelari pemula.</p>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <div class="container mx-auto flex justify-center mb-5 mt-12">
+        <img src="src/images/image-daftarbank.png" alt="">
+    </div>
+    <footer>
+        <div class="bg-color_blue font-Montserrat text-white ">
+            <div class="container mx-auto lg:flex ml-auto mr-auto flex-wrap p-7">
+                <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                    <h5 class="text-base font-bold">Mino Store</h5>
+                    <ul class="text-sm font-normal">
+                        <li class="pb-3"><a href="">Yogyakarta</a></li>
+                        <li class="pb-3"><a href="">Kebumen</a></li>
+                        <li class="pb-3"><a href="">Purwokerto</a></li>
+                        <li class="pb-3"><a href="">Kudus</a></li>
+                        <li><a href="">Surakarta</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                    <h5 class="text-base font-bold">Belanja</h5>
+                    <ul class="text-sm font-normal">
+                        <li class="pb-3"><a href="">Sepatu Pria</a></li>
+                        <li class="pb-3"><a href="">Sepatu Wanita</a></li>
+                        <li class="pb-3"><a href="">Sepatu Unisex</a></li>
+                        <li class="pb-3"><a href="">Pernak-pernik</a></li>
+                        <li><a href="">Aksesoris</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                    <h5 class="text-base font-bold">Layanan</h5>
+                    <ul class="text-sm font-normal">
+                        <li class="pb-3"><a href="">Bantuan</a></li>
+                        <li class="pb-3"><a href="">Cara Pengembalian</a></li>
+                        <li class="pb-3"><a href="">Indeks Produk</a></li>
+                        <li class="pb-3"><a href="">Promo & Diskon</a></li>
+                        <li class="pb-3"><a href="">Konfirmasi Transfer</a></li>
+                        <li><a href="">Status Pesanan</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                    <h5 class="text-base font-bold">Tentang Kami</h5>
+                    <ul class="text-sm font-normal">
+                        <li class="pb-3"><a href="">Tentang Kami</a></li>
+                        <li class="pb-3"><a href="">Pers/Media</a></li>
+                        <li class="pb-3"><a href="">Karir</a></li>
+                        <li class="pb-3"><a href="">Persyaratan & Ketentuan</a></li>
+                        <li class="pb-3"><a href="">Kebijakan Privasi</a></li>
+                        <li><a href="">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+        <div class="bg-color_blue_aqua">
+            <span class="flex justify-center p-3 text-white">(c) 2020 CV. MinoStore Minomartani</span>
+        </div>
+    </footer>
+</body>
+</html>
